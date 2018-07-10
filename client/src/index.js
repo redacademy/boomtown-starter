@@ -24,16 +24,6 @@ import theme from './theme'
  */
 
 /**
- * @TODO: Add the Viewer Context
- *
- * import { ViewerProvider } from './context/ViewerProvider'
- *
- * Below in your <App />, wrap the <ViewerProvider /> component around
- * the <BrowserRouter /> component so the router is aware of whether a
- * user is currently logged in and who that user is.
- */
-
-/**
  * @TODO: Add Routing
  *
  * Uncomment the following line when your routes are configured
@@ -56,18 +46,30 @@ import theme from './theme'
  * prop's value.
  */
 
+/**
+ * @TODO: Add the Viewer Context
+ *
+ * import { ViewerProvider } from './context/ViewerProvider'
+ *
+ * Below in your <App />, wrap the <ViewerProvider /> component around
+ * the <BrowserRouter /> component so the router is aware of whether a
+ * user is currently logged in and who that user is.
+ */
+
 // @TODO: Remove this import once you have your router working below
 import Home from './pages/Home'
 // -------------------------------
 
 import './index.css'
 
-const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline />
-    <Home />
-  </MuiThemeProvider>
-)
+const App = () => {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Home />
+    </MuiThemeProvider>
+  )
+}
 
 ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()
