@@ -29,7 +29,8 @@ const userItemsData = ({ userId, render }) => {
   /**
    * @TODO: Use Apollo's <Query /> component to fetch all of a user's items.
    *
-   * Note: Your query will need to retrieve only items that belong to a specific user id.
+   * Note: Your query will need to retrieve only items that belong to a
+   * specific user id.
    */
   return undefined
 }
@@ -51,10 +52,12 @@ const addItem = ({ render }) => {
   return undefined
 }
 const ItemsContainer = adopt({
-  tagData,
-  itemsData,
-  userItemsData,
-  addItem
+  // @TODO: Uncomment each line as you write the corresponding query.
+  // tagData,
+  // itemsData,
+  // userItemsData,
+  // addItem
+  // -------------------------------
 })
 
 export default ItemsContainer
