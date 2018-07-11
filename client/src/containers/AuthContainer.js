@@ -33,9 +33,11 @@ const logout = ({ render }) => {
 }
 
 const AuthContainer = adopt({
-  signup,
-  login,
-  logout
+  // @TODO: Uncomment each line as you write the corresponding query.
+  // signup,
+  // login,
+  // logout
+  // -------------------------------
 })
 
 export default AuthContainer
