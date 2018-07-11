@@ -16,10 +16,10 @@ import theme from './theme'
  *
  * Uncomment the following line when Apollo Client is configured:
  *
- * import apolloClient from './ApolloClient'
+ * import client from './apollo'
  *
  * Below in your <App />, wrap you pages in an <ApolloProvider /> component
- * and pass it `apolloClient` as the `client` prop value so they will
+ * and pass it `client` as the `client` prop value so they will
  * have access to data exposed by your GraphQL API.
  */
 
