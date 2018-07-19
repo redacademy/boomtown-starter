@@ -1,12 +1,12 @@
-const { ApolloServer } = require('apollo-server')
-const { apolloUploadExpress } = require('apollo-upload-server')
-const { makeExecutableSchema } = require('graphql-tools')
+const { ApolloServer } = require('apollo-server');
+const { apolloUploadExpress } = require('apollo-upload-server');
+const { makeExecutableSchema } = require('graphql-tools');
 
-const typeDefs = require('../api/schema')
-let resolvers = require('../api/resolvers')
+const typeDefs = require('../api/schema');
+let resolvers = require('../api/resolvers');
 
 module.exports = function({ app, pgResource }) {
-  resolvers = resolvers(app)
+  resolvers = resolvers(app);
 
   /**
    * @TODO: Initialize Apollo Server
@@ -19,7 +19,7 @@ module.exports = function({ app, pgResource }) {
    */
 
   // @TODO: Refactor to use 'makeExecutableSchema' to wire up your schema to your resolvers:
-  const schema = undefined
+  const schema = undefined;
   // -------------------------------
 
   const apolloServer = new ApolloServer({
@@ -43,10 +43,10 @@ module.exports = function({ app, pgResource }) {
          * Refactor this code and supply any additional information (values, methods, objects...etc)
          * you'll need to use in your resolving functions.
          */
-      }
+      };
     },
     schema
-  })
+  });
 
   apolloServer.applyMiddleware({
     app,
@@ -57,5 +57,5 @@ module.exports = function({ app, pgResource }) {
     uploads: apolloUploadExpress({
       maxFileSize: 10000000 // 10mb
     })
-  })
-}
+  });
+};

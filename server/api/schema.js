@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+const { gql } = require('apollo-server');
 
 /**
  *  @TODO: Boomtown Schema
@@ -52,5 +52,4 @@ module.exports = gql`
   type Mutation {
     addItem: Boolean
   }
-
-`
+`;

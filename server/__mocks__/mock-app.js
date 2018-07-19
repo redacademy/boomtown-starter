@@ -1,14 +1,14 @@
 class MockApp {
-  constructor () {
-    this._config = {}
+  constructor() {
+    this._config = {};
   }
-  use (mw) {}
-  get (key) {
-    return this._config[key]
+  use(mw) {}
+  get(key) {
+    return this._config[key];
   }
-  set (key, value) {
-    this._config[key] = value
+  set(key, value) {
+    this._config[key] = value;
   }
 }
 
-module.exports = MockApp
+module.exports = MockApp;

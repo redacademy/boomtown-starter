@@ -13,13 +13,13 @@
  *  The user resolver has been completed as an example of what you'll need to do.
  *  Finish of the rest of the resolvers when you're ready.
  */
-const { ApolloError } = require('apollo-server')
+const { ApolloError } = require('apollo-server');
 
 // @TODO: Uncomment these lines later when we add auth
 // const jwt = require("jsonwebtoken")
 // const authMutations = require("./auth")
 // -------------------------------
-const { UploadScalar, DateScalar } = require('../custom-types')
+const { UploadScalar, DateScalar } = require('../custom-types');
 
 module.exports = function(app) {
   return {
@@ -42,24 +42,24 @@ module.exports = function(app) {
          *  the token's stored user here. If there is no token, the user has signed out,
          *  in which case you'll return null
          */
-        return null
+        return null;
       },
       async user(parent, { id }, { pgResource }, info) {
         try {
-          const user = await pgResource.getUserById(id)
-          return user
+          const user = await pgResource.getUserById(id);
+          return user;
         } catch (e) {
-          throw new ApolloError(e)
+          throw new ApolloError(e);
         }
       },
       async items() {
         // @TODO: Replace this mock return statement with the correct items from Postgres
-        return []
+        return [];
         // -------------------------------
       },
       async tags() {
         // @TODO: Replace this mock return statement with the correct tags from Postgres
-        return []
+        return [];
         // -------------------------------
       }
     },
@@ -152,15 +152,15 @@ module.exports = function(app) {
          *  destructuring should look like.
          */
 
-        image = await image
-        const user = await jwt.decode(context.token, app.get('JWT_SECRET'))
+        image = await image;
+        const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
         const newItem = await context.pgResource.saveNewItem({
           item: args.item,
           image: args.image,
           user
-        })
-        return newItem
+        });
+        return newItem;
       }
     }
-  }
-}
+  };
+};

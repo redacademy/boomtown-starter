@@ -1,6 +1,6 @@
-const { GraphQLScalarType } = require('graphql')
+const { GraphQLScalarType } = require('graphql');
 
-const { Kind } = require('graphql/language')
+const { Kind } = require('graphql/language');
 
 const UploadScalar = new GraphQLScalarType({
   name: 'Upload',
@@ -9,12 +9,12 @@ const UploadScalar = new GraphQLScalarType({
     'an object containing `stream`, `filename`, `mimetype` and `encoding`.',
   parseValue: value => value,
   parseLiteral() {
-    throw new Error('Upload scalar literal unsupported')
+    throw new Error('Upload scalar literal unsupported');
   },
   serialize() {
-    throw new Error('Upload scalar serialization unsupported')
+    throw new Error('Upload scalar serialization unsupported');
   }
-})
+});
 
 /**
  *  @TODO: Custom Types
@@ -30,10 +30,10 @@ const UploadScalar = new GraphQLScalarType({
  */
 
 // @TOOD: Refactor this into a custom DATE scalar type using new GraphQLScalarType()
-const DateScalar = undefined
+const DateScalar = undefined;
 // -------------------------------
 
 module.exports = {
   UploadScalar,
   DateScalar
-}
+};

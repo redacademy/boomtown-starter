@@ -20,6 +20,6 @@ const styles = theme => ({
     fontWeight: 400,
     color: 'white'
   }
-})
+});
 
-export default styles
+export default styles;

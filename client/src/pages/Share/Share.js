@@ -1,7 +1,7 @@
-import { withStyles } from '@material-ui/core/styles'
-import React from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
-import styles from './styles'
+import styles from './styles';
 
 const Share = ({ classes }) => {
   return (
@@ -10,7 +10,7 @@ const Share = ({ classes }) => {
         This is the share page located at <code>/share</code>.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default withStyles(styles)(Share)
+export default withStyles(styles)(Share);

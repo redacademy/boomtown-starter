@@ -84,4 +84,4 @@ module.exports = `
     signup(user: SignupInput!): User!
     addItem (item: NewItemInput!, image: Upload!): Item 
   }
-`
+`;

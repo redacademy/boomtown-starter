@@ -4,7 +4,12 @@
   "description": "Server-side code for RED Academy's Boomtown project.",
   "main": "main.js",
   "scripts": {
-    "test": "jest --verbose --watch",
+    "jest": "jest --verbose",
+    "jest:watch": "npm run jest -- --watch",
+    "lint": "npm run prettier -- --list-different",
+    "lint:fix": "npm run prettier -- --write",
+    "prettier": "prettier '**/*.js'",
+    "test": "npm run lint && npm run jest",
     "start": "NODE_ENV=production node main.js",
     "start:dev": "NODE_ENV=development nodemon main.js "
   },
@@ -16,6 +21,7 @@
     "apollo-server-express": "^2.0.0-rc.0",
     "apollo-upload-server": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "chalk": "2.4.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
@@ -28,7 +34,8 @@
   },
   "devDependencies": {
     "jest-cli": "^23.2.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "prettier": "1.13.7"
   },
   "jest": {
     "testPathIgnorePatterns": [

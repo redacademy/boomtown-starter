@@ -30,9 +30,15 @@
     "redux-devtools-extension": "^2.13.5"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build && rm -rf ../server/public && mv build ../server/public",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npm run prettier -- --list-different",
+    "lint:fix": "npm run prettier -- --write",
+    "prettier": "prettier '**/*.js'",
+    "start": "react-scripts start",
+    "test": "npm run lint && react-scripts test --env=jsdom"
+  },
+  "devDependencies": {
+    "prettier": "1.13.7"
   }
 }

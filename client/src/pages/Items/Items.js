@@ -1,7 +1,7 @@
-import { withStyles } from '@material-ui/core/styles'
-import React from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
-import styles from './styles'
+import styles from './styles';
 
 const Items = ({ classes }) => {
   return (
@@ -10,7 +10,7 @@ const Items = ({ classes }) => {
         This is the items page located at <code>/items</code>.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default withStyles(styles)(Items)
+export default withStyles(styles)(Items);

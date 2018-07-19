@@ -1,6 +1,6 @@
-const { AuthenticationError } = require('apollo-server')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const { AuthenticationError } = require('apollo-server');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 function setCookie({ tokenName, token, res }) {
   /**
@@ -19,12 +19,12 @@ function setCookie({ tokenName, token, res }) {
   // Refactor this method with the correct configuration values.
   res.cookie(tokenName, token, {
     // @TODO: Supply the correct configuration values for our cookie here
-  })
+  });
   // -------------------------------
 }
 
 function generateToken(user, secret) {
-  const { id, email, fullname, bio } = user // Omit the password from the token
+  const { id, email, fullname, bio } = user; // Omit the password from the token
   /**
    *  @TODO: Authentication - Server
    *
@@ -35,7 +35,7 @@ function generateToken(user, secret) {
    *  which can be decoded using the app secret to retrieve the stateless session.
    */
   // Refactor this return statement to return the cryptographic hash (the Token)
-  return ''
+  return '';
   // -------------------------------
 }
 
@@ -54,26 +54,26 @@ module.exports = function(app) {
          * and store that instead. The password can be decoded using the original password.
          */
         // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-        const hashedPassword = ''
+        const hashedPassword = '';
         // -------------------------------
 
         const user = await context.pgResource.createUser({
           fullname: args.user.fullname,
           email: args.user.email,
           password: hashedPassword
-        })
+        });
 
         setCookie({
           tokenName: app.get('JWT_COOKIE_NAME'),
           token: generateToken(user, app.get('JWT_SECRET')),
           res: context.req.res
-        })
+        });
 
         return {
           id: user.id
-        }
+        };
       } catch (e) {
-        throw new AuthenticationError(e)
+        throw new AuthenticationError(e);
       }
     },
 
@@ -81,7 +81,7 @@ module.exports = function(app) {
       try {
         const user = await context.pgResource.getUserAndPasswordForVerification(
           args.user.email
-        )
+        );
 
         /**
          *  @TODO: Authentication - Server
@@ -90,27 +90,27 @@ module.exports = function(app) {
          *  they submitted from the login form to decrypt the 'hashed' version stored in out database.
          */
         // Use bcrypt to compare the provided password to 'hashed' password stored in your database.
-        const valid = false
+        const valid = false;
         // -------------------------------
-        if (!valid || !user) throw 'User was not found.'
+        if (!valid || !user) throw 'User was not found.';
 
         setCookie({
           tokenName: app.get('JWT_COOKIE_NAME'),
           token: generateToken(user, app.get('JWT_SECRET')),
           res: context.req.res
-        })
+        });
 
         return {
           id: user.id
-        }
+        };
       } catch (e) {
-        throw new AuthenticationError(e)
+        throw new AuthenticationError(e);
       }
     },
 
     logout(parent, args, context) {
-      context.req.res.clearCookie(app.get('JWT_COOKIE_NAME'))
-      return true
+      context.req.res.clearCookie(app.get('JWT_COOKIE_NAME'));
+      return true;
     }
-  }
-}
+  };
+};

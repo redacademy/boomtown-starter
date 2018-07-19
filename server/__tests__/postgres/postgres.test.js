@@ -1,11 +1,11 @@
 describe('Postgres', () => {
   test('Postgres configuration', () => {
-    return undefined
-  })
+    return undefined;
+  });
 
   describe('Resource methods', () => {
     test('Resource methods', () => {
-      return undefined
-    })
-  })
-})
+      return undefined;
+    });
+  });
+});

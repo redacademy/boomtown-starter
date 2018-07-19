@@ -1,5 +1,5 @@
 export default function validate(values) {
-  const errors = {}
+  const errors = {};
 
   /**
    * @TODO: Write the validation rules for the share form.
@@ -7,5 +7,5 @@ export default function validate(values) {
    * An item title, description, and at least one tag is required for all items.
    */
 
-  return errors
+  return errors;
 }
