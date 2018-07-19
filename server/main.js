@@ -1,4 +1,5 @@
 const express = require('express');
+const chalk = require('chalk');
 
 const config = require('./config/application');
 
@@ -29,7 +30,7 @@ postgres.on('error', (err, client) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`>>\x1b[34m Express running:\x1b[0m http://localhost:${PORT}`);
+  console.log(`>> ${chalk.blue('Express running:')} http://localhost:${PORT}`);
 
   /**
    *  @TODO: Initialize Apollo Server
@@ -37,9 +38,12 @@ const server = app.listen(PORT, () => {
    *   Uncomment the following lines when you're ready to start Apollo:
    *
    *   console.log(
-   *     `>>\x1b[35m Graphql playground:\x1b[0m http://localhost:${PORT}/graphql`
-   *   )
+   *     `>> ${chalk.magenta('Graphql playground:')} http://localhost:${PORT}/graphql`
+   *   );
    */
+  console.log(
+    `>> ${chalk.magenta('Graphql playground:')} http://localhost:${PORT}/graphql`
+  );
 });
 
 server.on('error', err => {
