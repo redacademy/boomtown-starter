@@ -42,7 +42,9 @@ const server = app.listen(PORT, () => {
    *   );
    */
   console.log(
-    `>> ${chalk.magenta('Graphql playground:')} http://localhost:${PORT}/graphql`
+    `>> ${chalk.magenta(
+      'Graphql playground:'
+    )} http://localhost:${PORT}/graphql`
   );
 });
 
