@@ -4,6 +4,7 @@
   "description": "Client-side code for RED Academy's Boomtown project.",
   "scripts": {
     "build": "react-scripts build && rm -rf ../server/public && mv build ../server/public",
+    "precommit": "npm run lint --quiet",
     "eject": "react-scripts eject",
     "lint": "npm run prettier -- --list-different",
     "lint:fix": "npm run prettier -- --write",
@@ -39,6 +40,7 @@
     "redux-devtools-extension": "^2.13.5"
   },
   "devDependencies": {
+    "husky": "0.14.3",
     "prettier": "1.13.7"
   }
 }
