@@ -38,14 +38,9 @@ const server = app.listen(PORT, () => {
    *   Uncomment the following lines when you're ready to start Apollo:
    *
    *   console.log(
-   *     `>> ${chalk.magenta('Graphql playground:')} http://localhost:${PORT}/graphql`
+   *     `>> ${chalk.magenta('GraphQL playground:')} http://localhost:${PORT}/graphql`
    *   );
    */
-  console.log(
-    `>> ${chalk.magenta(
-      'Graphql playground:'
-    )} http://localhost:${PORT}/graphql`
-  );
 });
 
 server.on('error', err => {
