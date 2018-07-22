@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require('apollo-server-express');
 const { apolloUploadExpress } = require('apollo-upload-server');
 const { makeExecutableSchema } = require('graphql-tools');
 
