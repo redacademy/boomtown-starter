@@ -1,9 +1,9 @@
-import { Query } from 'react-apollo'
-import React, { Fragment } from 'react'
+import { Query } from 'react-apollo';
+import React, { Fragment } from 'react';
 
-import { VIEWER_QUERY } from '../apollo/queries'
+import { VIEWER_QUERY } from '../apollo/queries';
 
-export const ViewerContext = React.createContext()
+export const ViewerContext = React.createContext();
 
 export const ViewerProvider = ({ children }) => {
   /**
@@ -13,5 +13,5 @@ export const ViewerProvider = ({ children }) => {
    * Replace the <Fragment /> component with an Apollo <Query /> component
    * with a <ViewerContext.Provider /> nested inside that wrap the children.
    */
-  return <Fragment>{children}</Fragment>
-}
+  return <Fragment>{children}</Fragment>;
+};

@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
   palette: {
@@ -9,4 +9,4 @@ export default createMuiTheme({
       main: '#212121'
     }
   }
-})
+});

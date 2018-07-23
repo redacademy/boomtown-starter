@@ -1,4 +1,4 @@
-var strs = require('stringstream')
+var strs = require('stringstream');
 
 function tagsQueryString(tags, itemid, result) {
   /**
@@ -6,7 +6,7 @@ function tagsQueryString(tags, itemid, result) {
    * This function is recursive, and a little complicated.
    * Can you refactor it to be simpler / more readable?
    */
-  const length = tags.length
+  const length = tags.length;
   return length === 0
     ? `${result};`
     : tags.shift() &&
@@ -14,7 +14,7 @@ function tagsQueryString(tags, itemid, result) {
           tags,
           itemid,
           `${result}($${tags.length + 1}, ${itemid})${length === 1 ? '' : ','}`
-        )
+        );
 }
 
 module.exports = function(postgres) {
@@ -23,18 +23,18 @@ module.exports = function(postgres) {
       const newUserInsert = {
         text: '', // @TODO: Authentication - Server
         values: [fullname, email, password]
-      }
+      };
       try {
-        const user = await postgres.query(newUserInsert)
-        return user.rows[0]
+        const user = await postgres.query(newUserInsert);
+        return user.rows[0];
       } catch (e) {
         switch (true) {
           case /users_fullname_key/.test(e.message):
-            throw 'An account with this username already exists.'
+            throw 'An account with this username already exists.';
           case /users_email_key/.test(e.message):
-            throw 'An account with this email already exists.'
+            throw 'An account with this email already exists.';
           default:
-            throw 'There was a problem creating your account.'
+            throw 'There was a problem creating your account.';
         }
       }
     },
@@ -42,13 +42,13 @@ module.exports = function(postgres) {
       const findUserQuery = {
         text: '', // @TODO: Authentication - Server
         values: [email]
-      }
+      };
       try {
-        const user = await postgres.query(findUserQuery)
-        if (!user) throw 'User was not found.'
-        return user.rows[0]
+        const user = await postgres.query(findUserQuery);
+        if (!user) throw 'User was not found.';
+        return user.rows[0];
       } catch (e) {
-        throw 'User was not found.'
+        throw 'User was not found.';
       }
     },
     async getUserById(id) {
@@ -75,7 +75,7 @@ module.exports = function(postgres) {
       const findUserQuery = {
         text: '', // @TODO: Basic queries
         values: [id]
-      }
+      };
 
       /**
        *  Refactor the following code using the error handling logic described above.
@@ -86,8 +86,8 @@ module.exports = function(postgres) {
        *  Customize your throw statements so the message can be used by the client.
        */
 
-      const user = await postgres.query(findUserQuery)
-      return user
+      const user = await postgres.query(findUserQuery);
+      return user;
       // -------------------------------
     },
     async getItems(idToOmit) {
@@ -105,8 +105,8 @@ module.exports = function(postgres) {
 
         text: ``,
         values: idToOmit ? [idToOmit] : []
-      })
-      return items.rows
+      });
+      return items.rows;
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
@@ -116,8 +116,8 @@ module.exports = function(postgres) {
          */
         text: ``,
         values: [id]
-      })
-      return items.rows
+      });
+      return items.rows;
     },
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
@@ -127,21 +127,21 @@ module.exports = function(postgres) {
          */
         text: ``,
         values: [id]
-      })
-      return items.rows
+      });
+      return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */)
-      return tags.rows
+      const tags = await postgres.query(/* @TODO: Basic queries */);
+      return tags.rows;
     },
     async getTagsForItem(id) {
       const tagsQuery = {
         text: ``, // @TODO: Advanced queries
         values: [id]
-      }
+      };
 
-      const tags = await postgres.query(tagsQuery)
-      return tags.rows
+      const tags = await postgres.query(tagsQuery);
+      return tags.rows;
     },
     async saveNewItem({ item, image, user }) {
       /**
@@ -173,16 +173,16 @@ module.exports = function(postgres) {
             // Begin postgres transaction
             client.query('BEGIN', err => {
               // Convert image (file stream) to Base64
-              const imageStream = image.stream.pipe(strs('base64'))
+              const imageStream = image.stream.pipe(strs('base64'));
 
-              let base64Str = ''
+              let base64Str = '';
               imageStream.on('data', data => {
-                base64Str += data
-              })
+                base64Str += data;
+              });
 
               imageStream.on('end', async () => {
                 // Image has been converted, begin saving things
-                const { title, description, tags } = item
+                const { title, description, tags } = item;
 
                 // Generate new Item query
                 // @TODO
@@ -202,11 +202,11 @@ module.exports = function(postgres) {
                     'base64',
                     base64Str
                   ]
-                }
+                };
 
                 // Upload image
-                const uploadedImage = await client.query(imageUploadQuery)
-                const imageid = uploadedImage.rows[0].id
+                const uploadedImage = await client.query(imageUploadQuery);
+                const imageid = uploadedImage.rows[0].id;
 
                 // Generate image relation query
                 // @TODO
@@ -227,34 +227,34 @@ module.exports = function(postgres) {
                 // Commit the entire transaction!
                 client.query('COMMIT', err => {
                   if (err) {
-                    throw err
+                    throw err;
                   }
                   // release the client back to the pool
-                  done()
+                  done();
                   // Uncomment this resolve statement when you're ready!
                   // resolve(newItem.rows[0])
                   // -------------------------------
-                })
-              })
-            })
+                });
+              });
+            });
           } catch (e) {
             // Something went wrong
             client.query('ROLLBACK', err => {
               if (err) {
-                throw err
+                throw err;
               }
               // release the client back to the pool
-              done()
-            })
+              done();
+            });
             switch (true) {
               case /uploads_itemid_key/.test(e.message):
-                throw 'This item already has an image.'
+                throw 'This item already has an image.';
               default:
-                throw e
+                throw e;
             }
           }
-        })
-      })
+        });
+      });
     }
-  }
-}
+  };
+};

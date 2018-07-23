@@ -6,11 +6,47 @@ Commands must be run from the `server` directory:
 
 ### Installation
 
-`npm install`
+```bash
+npm install
+```
 
 ### Run
 
-`npm run start:dev`
+```bash
+npm run start:dev
+```
+
+### Tests
+
+Just linting:
+
+```bash
+npm run lint
+```
+
+Run linting, and fix any errors:
+
+```bash
+npm run lint:fix
+```
+
+Run Jest tests:
+
+```
+npm run jest
+```
+
+Run Jest tests, and watch for changes:
+
+```bash
+npm run jest:watch
+```
+
+Run all tests:
+
+```bash
+npm run test
+```
 
 ## Client
 
@@ -18,12 +54,40 @@ Commands must be run from the `client` directory:
 
 ### Installation
 
-`npm install`
+```bash
+npm install
+```
 
 ### Run
 
-`npm start`
+```bash
+npm start
+```
 
 ### Build
 
-`npm run build`
+```bash
+npm run build
+```
+
+### Tests
+
+Just linting:
+
+```bash
+npm run lint
+```
+
+Run linting, and fix any errors:
+
+```bash
+npm run lint:fix
+```
+
+Run all tests:
+
+```bash
+npm run test
+```
+
+

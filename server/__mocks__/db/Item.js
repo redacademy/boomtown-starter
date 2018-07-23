@@ -7,6 +7,6 @@ const MockItem = {
   imageid: 1,
   ownerid: 1,
   borrowerid: 2
-}
+};
 
-module.exports = MockItem
+module.exports = MockItem;

@@ -1,15 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 // @TODO: Uncomment each module as needed in your client app
 // import { ApolloProvider } from 'react-apollo'
 // import { BrowserRouter } from 'react-router-dom'
 // import { Provider as ReduxProvider } from 'react-redux'
 // -------------------------------
 
-import registerServiceWorker from './registerServiceWorker'
-import theme from './theme'
+import registerServiceWorker from './registerServiceWorker';
+import theme from './theme';
 
 /**
  * @TODO: Initialize Apollo Client
@@ -57,10 +57,10 @@ import theme from './theme'
  */
 
 // @TODO: Remove this import once you have your router working below
-import Home from './pages/Home'
+import Home from './pages/Home';
 // -------------------------------
 
-import './index.css'
+import './index.css';
 
 const App = () => {
   return (
@@ -68,8 +68,8 @@ const App = () => {
       <CssBaseline />
       <Home />
     </MuiThemeProvider>
-  )
-}
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();

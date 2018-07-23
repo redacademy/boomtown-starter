@@ -1,8 +1,8 @@
-import { ApolloClient } from 'apollo-client'
-import { ApolloLink } from 'apollo-link'
-import { createUploadLink } from 'apollo-upload-client'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { onError } from 'apollo-link-error'
+import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { createUploadLink } from 'apollo-upload-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { onError } from 'apollo-link-error';
 
 const httpWithUploadsLink = createUploadLink({
   includeExtensions: true,
@@ -10,7 +10,7 @@ const httpWithUploadsLink = createUploadLink({
   uri: undefined,
   // -------------------------------
   credentials: process.env.NODE_ENV === 'production' ? 'same-origin' : 'include'
-})
+});
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -21,9 +21,9 @@ const client = new ApolloClient({
           console.log(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
           )
-        )
+        );
       }
-      if (networkError) console.log(`[Network error]: ${networkError}`)
+      if (networkError) console.log(`[Network error]: ${networkError}`);
     })
     /**
      * @TODO: Set your httpWithUploads link as the next item in this array.
@@ -32,6 +32,6 @@ const client = new ApolloClient({
      */
   ]),
   cache: new InMemoryCache() // Pull data from client-side cache, if available
-})
+});
 
-export default client
+export default client;

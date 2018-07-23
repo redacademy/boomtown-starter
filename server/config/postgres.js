@@ -1,4 +1,4 @@
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 
 module.exports = function(app) {
   /**
@@ -11,5 +11,5 @@ module.exports = function(app) {
     /**
      *  @TODO: Supply the correct configuration values to connect to postgres
      */
-  })
-}
+  });
+};

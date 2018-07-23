@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class ShareForm extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   render() {
@@ -11,8 +11,8 @@ class ShareForm extends Component {
       <div>
         <p>This is the share form.</p>
       </div>
-    )
+    );
   }
 }
 
-export default ShareForm
+export default ShareForm;
