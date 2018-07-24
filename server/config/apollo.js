@@ -5,7 +5,7 @@ const { makeExecutableSchema } = require('graphql-tools');
 const typeDefs = require('../api/schema');
 let resolvers = require('../api/resolvers');
 
-module.exports = function({ app, pgResource }) {
+module.exports = ({ app, pgResource }) => {
   resolvers = resolvers(app);
 
   /**

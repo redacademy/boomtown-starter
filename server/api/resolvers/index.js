@@ -21,9 +21,9 @@ const { ApolloError } = require('apollo-server-express');
 // -------------------------------
 const { UploadScalar, DateScalar } = require('../custom-types');
 
-module.exports = function(app) {
+module.exports = (app) => {
   return {
-    Upload: UploadScalar,
+    // Upload: UploadScalar,
     // Date: DateScalar,
 
     Query: {
