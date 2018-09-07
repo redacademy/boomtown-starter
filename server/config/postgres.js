@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 
-module.exports = function(app) {
+module.exports = (app) => {
   /**
    * @TODO: Configuration Variables
    *

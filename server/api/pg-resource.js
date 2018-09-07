@@ -1,4 +1,4 @@
-var strs = require('stringstream');
+const strs = require('stringstream');
 
 function tagsQueryString(tags, itemid, result) {
   /**
@@ -17,7 +17,7 @@ function tagsQueryString(tags, itemid, result) {
         );
 }
 
-module.exports = function(postgres) {
+module.exports = (postgres) => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
@@ -55,7 +55,7 @@ module.exports = function(postgres) {
       /**
        *  @TODO: Handling Server Errors
        *
-       *  Inside of our resuorce methods we get to determine wen and how errors are returned
+       *  Inside of our resource methods we get to determine when and how errors are returned
        *  to our resolvers using try / catch / throw semantics.
        *
        *  Ideally, the errors that we'll throw from our resource should be able to be used by the client
@@ -67,7 +67,7 @@ module.exports = function(postgres) {
        *  1) Query for the user using the given id. If no user is found throw an error.
        *  2) If there is an error with the query (500) throw an error.
        *  3) If the user is found and there are no errors, return only the id, email, fullname, bio fields.
-       *     -- this is important,don't return the password!
+       *     -- this is important, don't return the password!
        *
        *  You'll need to complete the query first before attempting this exercise.
        */
