@@ -11,7 +11,12 @@ import Typography from '@material-ui/core/Typography';
  *
  * import { Form, Field } from 'react-final-form'
  *
- * import AuthContainer from '../../containers/AuthContainer'
+ * import {
+ *    LOGIN_MUTATION,
+ *    SIGNUP_MUTATION,
+ *    VIEWER_QUERY
+ * } from '../../apollo/queries';
+ * import { graphql, compose } from 'react-apollo';
  * import validate from './helpers/validation'
  */
 
@@ -29,7 +34,6 @@ class AccountForm extends Component {
     const { classes } = this.props;
 
     return (
-      // @TODO: Wrap in <AuthContainer />
       // @TODO: Wrap in Final Form <Form />
       <form
         onSubmit={() => {
@@ -120,9 +124,10 @@ class AccountForm extends Component {
         </Typography>
       </form>
       // @TODO: Close Final Form <Form />
-      // @TODO: Close <AuthContainer />
     );
   }
 }
 
+// @TODO: Use compose to add the login and signup mutations to this components props.
+// @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
 export default withStyles(styles)(AccountForm);
