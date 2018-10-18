@@ -1,13 +1,8 @@
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-// import { Redirect } from 'react-router-dom'
-
 import AccountForm from '../../components/AccountForm';
 
-import styles from './styles';
 
 const Home = ({ classes }) => {
   return (
@@ -40,4 +35,4 @@ const Home = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(Home);
+export default Home;

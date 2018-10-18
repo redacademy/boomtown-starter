@@ -26,12 +26,10 @@
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.2",
     "react": "^16.4.1",
-    "react-adopt": "^0.6.0",
     "react-apollo": "^2.1.5",
     "react-dom": "^16.4.1",
     "react-final-form": "^3.6.2",
     "react-gravatar": "^2.6.3",
-    "react-loadable": "^5.4.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -40,7 +38,6 @@
     "redux-devtools-extension": "^2.13.5"
   },
   "devDependencies": {
-    "husky": "0.14.3",
     "prettier": "1.13.7"
   }
 }
