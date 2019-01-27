@@ -1,10 +1,9 @@
-const strs = require('stringstream');
-
 function tagsQueryString(tags, itemid, result) {
   /**
    * Challenge:
-   * This function is recursive, and a little complicated.
-   * Can you refactor it to be simpler / more readable?
+   * This function is more than a little complicated.
+   *  - Can you refactor it to be simpler / more readable?
+   *  - Is this
    */
   const length = tags.length;
   return length === 0
@@ -17,7 +16,7 @@ function tagsQueryString(tags, itemid, result) {
         );
 }
 
-module.exports = (postgres) => {
+module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
@@ -143,7 +142,7 @@ module.exports = (postgres) => {
       const tags = await postgres.query(tagsQuery);
       return tags.rows;
     },
-    async saveNewItem({ item, image, user }) {
+    async saveNewItem({ item, user }) {
       /**
        *  @TODO: Adding a New Item
        *
@@ -167,74 +166,40 @@ module.exports = (postgres) => {
         /**
          * Begin transaction by opening a long-lived connection
          * to a client from the client pool.
+         * - Read about transactions here: https://node-postgres.com/features/transactions
          */
         postgres.connect((err, client, done) => {
           try {
             // Begin postgres transaction
-            client.query('BEGIN', err => {
-              // Convert image (file stream) to Base64
-              const imageStream = image.stream.pipe(strs('base64'));
+            client.query('BEGIN', async err => {
+              const { title, description, tags } = item;
 
-              let base64Str = '';
-              imageStream.on('data', data => {
-                base64Str += data;
-              });
+              // Generate new Item query
+              // @TODO
+              // -------------------------------
 
-              imageStream.on('end', async () => {
-                // Image has been converted, begin saving things
-                const { title, description, tags } = item;
+              // Insert new Item
+              // @TODO
+              // -------------------------------
 
-                // Generate new Item query
-                // @TODO
+              // Generate tag relationships query (use the'tagsQueryString' helper function provided)
+              // @TODO
+              // -------------------------------
+
+              // Insert tags
+              // @TODO
+              // -------------------------------
+
+              // Commit the entire transaction!
+              client.query('COMMIT', err => {
+                if (err) {
+                  throw err;
+                }
+                // release the client back to the pool
+                done();
+                // Uncomment this resolve statement when you're ready!
+                // resolve(newItem.rows[0])
                 // -------------------------------
-
-                // Insert new Item
-                // @TODO
-                // -------------------------------
-
-                const imageUploadQuery = {
-                  text:
-                    'INSERT INTO uploads (itemid, filename, mimetype, encoding, data) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-                  values: [
-                    // itemid,
-                    image.filename,
-                    image.mimetype,
-                    'base64',
-                    base64Str
-                  ]
-                };
-
-                // Upload image
-                const uploadedImage = await client.query(imageUploadQuery);
-                const imageid = uploadedImage.rows[0].id;
-
-                // Generate image relation query
-                // @TODO
-                // -------------------------------
-
-                // Insert image
-                // @TODO
-                // -------------------------------
-
-                // Generate tag relationships query (use the'tagsQueryString' helper function provided)
-                // @TODO
-                // -------------------------------
-
-                // Insert tags
-                // @TODO
-                // -------------------------------
-
-                // Commit the entire transaction!
-                client.query('COMMIT', err => {
-                  if (err) {
-                    throw err;
-                  }
-                  // release the client back to the pool
-                  done();
-                  // Uncomment this resolve statement when you're ready!
-                  // resolve(newItem.rows[0])
-                  // -------------------------------
-                });
               });
             });
           } catch (e) {
@@ -247,8 +212,6 @@ module.exports = (postgres) => {
               done();
             });
             switch (true) {
-              case /uploads_itemid_key/.test(e.message):
-                throw 'This item already has an image.';
               default:
                 throw e;
             }

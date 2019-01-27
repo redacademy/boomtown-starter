@@ -1,5 +1,4 @@
 const { ApolloServer } = require('apollo-server-express');
-const { apolloUploadExpress } = require('apollo-upload-server');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const typeDefs = require('../api/schema');
@@ -50,12 +49,8 @@ module.exports = ({ app, pgResource }) => {
 
   apolloServer.applyMiddleware({
     app,
-    uploads: true,
     // @TODO: Add the CORS_CONFIG from your application configuration
-    cors: undefined,
+    cors: undefined
     // -------------------------------
-    uploads: apolloUploadExpress({
-      maxFileSize: 10000000 // 10mb
-    })
   });
 };

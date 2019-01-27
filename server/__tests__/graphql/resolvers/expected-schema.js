@@ -1,7 +1,6 @@
 module.exports = `
 
   scalar Date
-  scalar Upload
 
   enum Role {
     VIEWER  
@@ -71,7 +70,6 @@ module.exports = `
   }
 
   type Query {
-    uploads: [File]
     user(id: ID!): User
     viewer: User
     items(filter: ID): [Item]
@@ -82,6 +80,6 @@ module.exports = `
     login(user: LoginInput!): User!
     logout: Boolean!
     signup(user: SignupInput!): User!
-    addItem (item: NewItemInput!, image: Upload!): Item 
+    addItem (item: NewItemInput!): Item 
   }
 `;

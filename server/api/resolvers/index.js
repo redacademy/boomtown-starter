@@ -19,12 +19,11 @@ const { ApolloError } = require('apollo-server-express');
 // const jwt = require("jsonwebtoken")
 // const authMutations = require("./auth")
 // -------------------------------
-const { UploadScalar, DateScalar } = require('../custom-types');
+const { DateScalar } = require('../custom-types');
 
-module.exports = (app) => {
+module.exports = app => {
   return {
-    // Upload: UploadScalar,
-    // Date: DateScalar,
+    Date: DateScalar,
 
     Query: {
       viewer() {
@@ -123,12 +122,6 @@ module.exports = (app) => {
       //    */
       //   return null
       //   // -------------------------------
-      // },
-      // async imageurl({ imageurl, imageid, mimetype, data }) {
-      //   if (imageurl) return imageurl
-      //   if (imageid) {
-      //     return `data:${mimetype};base64, ${data}`
-      //   }
       // }
       // -------------------------------
     },

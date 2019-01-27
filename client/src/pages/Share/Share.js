@@ -4,7 +4,6 @@ import React from 'react';
   and call them from this file.
 
   ShareItemForm is the form that our User will use to add a new item 
-  and upload an image.
 
   When the user is filling ShareItemForm, we will show a preview of 
   this item using the ShareItemPreview. 

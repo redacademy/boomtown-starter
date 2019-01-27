@@ -1,10 +1,10 @@
 import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
-import { createUploadLink } from 'apollo-upload-client';
+import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 
-const httpWithUploadsLink = createUploadLink({
+const httpLink = createHttpLink({
   includeExtensions: true,
   // @TODO: If `process.env.NODE_ENV !== 'production'`, then use localhost's GraphQL endpoint
   uri: undefined,
@@ -26,8 +26,8 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     })
     /**
-     * @TODO: Set your httpWithUploads link as the next item in this array.
-     *
+     * @TODO: Set your httpLink link as the next item in this array.
+     * Read about httpLink here: 
      * Don't forget to add to add a comma after the first array item above!
      */
   ]),
