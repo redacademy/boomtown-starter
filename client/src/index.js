@@ -28,9 +28,9 @@ import theme from './theme';
  *
  * Uncomment the following line when your routes are configured
  *
- * import Layout from './routes/Layout'
+ * import AppRoutes from './routes'
  *
- * Below in your <App />, nest your <Routes /> inside of <BrowserRouter />
+ * Below in your <App />, nest your <AppRoutes /> inside of <BrowserRouter />
  * component to enable routing in your client app.
  */
 

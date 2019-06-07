@@ -1,4 +1,6 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
 const Profile = ({ classes }) => {
   return (
@@ -10,4 +12,4 @@ const Profile = ({ classes }) => {
   );
 };
 
-export default Profile;
+export default withStyles(styles)(Profile);
