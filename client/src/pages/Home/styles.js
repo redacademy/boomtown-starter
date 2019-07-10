@@ -3,17 +3,17 @@ const styles = theme => ({
     flexGrow: 1,
     height: '100%',
     background: theme.palette.primary.main,
-    padding: theme.spacing.unit * 5,
+    padding: theme.spacing(5),
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 20
+      padding: theme.spacing(20)
     }
   },
   headline: {
-    fontWeight: 700,
+    fontWeight: 500,
     color: theme.palette.text.primary,
-    fontSize: theme.typography.display3.fontSize,
+    fontSize: theme.typography.h3.fontSize,
     [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.display4.fontSize
+      fontSize: theme.typography.h1.fontSize
     }
   },
   subheading: {

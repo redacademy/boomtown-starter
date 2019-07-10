@@ -3,7 +3,6 @@ function tagsQueryString(tags, itemid, result) {
    * Challenge:
    * This function is more than a little complicated.
    *  - Can you refactor it to be simpler / more readable?
-   *  - Is this
    */
   const length = tags.length;
   return length === 0
@@ -81,8 +80,8 @@ module.exports = postgres => {
        *  When you're done here, ensure all of the resource methods in this file
        *  include a try catch, and throw appropriate errors.
        *
-       *  Here is an example throw statement: throw 'User was not found.'
-       *  Customize your throw statements so the message can be used by the client.
+       *  Ex: If the user is not found from the DB throw 'User is not found'
+       *  If the password is incorrect throw 'User or Password incorrect'
        */
 
       const user = await postgres.query(findUserQuery);
@@ -92,11 +91,12 @@ module.exports = postgres => {
     async getItems(idToOmit) {
       const items = await postgres.query({
         /**
-         *  @TODO: Advanced queries
+         *  @TODO:
+         *
+         *  idToOmit = ownerId
          *
          *  Get all Items. If the idToOmit parameter has a value,
-         *  the query should only return Items were the ownerid column
-         *  does not contain the 'idToOmit'
+         *  the query should only return Items were the ownerid !== idToOmit
          *
          *  Hint: You'll need to use a conditional AND and WHERE clause
          *  to your query text using string interpolation
@@ -110,8 +110,8 @@ module.exports = postgres => {
     async getItemsForUser(id) {
       const items = await postgres.query({
         /**
-         *  @TODO: Advanced queries
-         *  Get all Items. Hint: You'll need to use a LEFT INNER JOIN among others
+         *  @TODO:
+         *  Get all Items for user using their id
          */
         text: ``,
         values: [id]
@@ -121,8 +121,8 @@ module.exports = postgres => {
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
         /**
-         *  @TODO: Advanced queries
-         *  Get all Items. Hint: You'll need to use a LEFT INNER JOIN among others
+         *  @TODO:
+         *  Get all Items borrowed by user using their id
          */
         text: ``,
         values: [id]
@@ -135,7 +135,7 @@ module.exports = postgres => {
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: ``, // @TODO: Advanced queries
+        text: ``, // @TODO: Advanced query Hint: use INNER JOIN
         values: [id]
       };
 

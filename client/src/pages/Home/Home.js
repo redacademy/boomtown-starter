@@ -2,7 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccountForm from '../../components/AccountForm';
-
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
 const Home = ({ classes }) => {
   return (
@@ -21,12 +22,12 @@ const Home = ({ classes }) => {
         >
           Boomtown
         </Typography>
-        <Typography variant="display4" className={classes.headline}>
+        <Typography variant="h1" className={classes.headline}>
           Share. Borrow. Prosper.
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12} md={6}>
-        <Typography gutterBottom variant="headline">
+        <Typography gutterBottom variant="h3">
           Welcome home.
         </Typography>
         <AccountForm />
@@ -35,4 +36,4 @@ const Home = ({ classes }) => {
   );
 };
 
-export default Home;
+export default withStyles(styles)(Home);

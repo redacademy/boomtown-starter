@@ -1,4 +1,6 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
 const Items = ({ classes }) => {
   return (
@@ -10,5 +12,4 @@ const Items = ({ classes }) => {
   );
 };
 
-export default Items;
-
+export default withStyles(styles)(Items);
