@@ -1,26 +1,16 @@
 function tagsQueryString(tags, itemid, result) {
-  /**
-   * Challenge:
-   * This function is more than a little complicated.
-   *  - Can you refactor it to be simpler / more readable?
-   */
-  const length = tags.length;
-  return length === 0
-    ? `${result};`
-    : tags.shift() &&
-        tagsQueryString(
-          tags,
-          itemid,
-          `${result}($${tags.length + 1}, ${itemid})${length === 1 ? '' : ','}`
-        );
+  for (i = tags.length; i > 0; i--) {
+    result += `($${i}, ${itemid}),`;
+  }
+  return result.slice(0, -1) + ";";
 }
 
 module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: '', // @TODO: Authentication - Server
-        values: [fullname, email, password]
+        text: "", // @TODO: Authentication - Server
+        values: [fullname, email, password],
       };
       try {
         const user = await postgres.query(newUserInsert);
@@ -28,25 +18,25 @@ module.exports = postgres => {
       } catch (e) {
         switch (true) {
           case /users_fullname_key/.test(e.message):
-            throw 'An account with this username already exists.';
+            throw "An account with this username already exists.";
           case /users_email_key/.test(e.message):
-            throw 'An account with this email already exists.';
+            throw "An account with this email already exists.";
           default:
-            throw 'There was a problem creating your account.';
+            throw "There was a problem creating your account.";
         }
       }
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: '', // @TODO: Authentication - Server
-        values: [email]
+        text: "", // @TODO: Authentication - Server
+        values: [email],
       };
       try {
         const user = await postgres.query(findUserQuery);
-        if (!user) throw 'User was not found.';
+        if (!user) throw "User was not found.";
         return user.rows[0];
       } catch (e) {
-        throw 'User was not found.';
+        throw "User was not found.";
       }
     },
     async getUserById(id) {
@@ -71,8 +61,8 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: '', // @TODO: Basic queries
-        values: [id]
+        text: "", // @TODO: Basic queries
+        values: [id],
       };
 
       /**
@@ -98,12 +88,12 @@ module.exports = postgres => {
          *  Get all Items. If the idToOmit parameter has a value,
          *  the query should only return Items were the ownerid !== idToOmit
          *
-         *  Hint: You'll need to use a conditional AND and WHERE clause
+         *  Hint: You'll need to use a conditional AND/WHERE clause
          *  to your query text using string interpolation
          */
 
         text: ``,
-        values: idToOmit ? [idToOmit] : []
+        values: idToOmit ? [idToOmit] : [],
       });
       return items.rows;
     },
@@ -114,7 +104,7 @@ module.exports = postgres => {
          *  Get all Items for user using their id
          */
         text: ``,
-        values: [id]
+        values: [id],
       });
       return items.rows;
     },
@@ -125,7 +115,7 @@ module.exports = postgres => {
          *  Get all Items borrowed by user using their id
          */
         text: ``,
-        values: [id]
+        values: [id],
       });
       return items.rows;
     },
@@ -136,7 +126,7 @@ module.exports = postgres => {
     async getTagsForItem(id) {
       const tagsQuery = {
         text: ``, // @TODO: Advanced query Hint: use INNER JOIN
-        values: [id]
+        values: [id],
       };
 
       const tags = await postgres.query(tagsQuery);
@@ -146,8 +136,7 @@ module.exports = postgres => {
       /**
        *  @TODO: Adding a New Item
        *
-       *  Adding a new Item to Posgtres is the most advanced query.
-       *  It requires 3 separate INSERT statements.
+       *  Adding a new Item requires 2 separate INSERT statements.
        *
        *  All of the INSERT statements must:
        *  1) Proceed in a specific order.
@@ -171,7 +160,7 @@ module.exports = postgres => {
         postgres.connect((err, client, done) => {
           try {
             // Begin postgres transaction
-            client.query('BEGIN', async err => {
+            client.query("BEGIN", async err => {
               const { title, description, tags } = item;
 
               // Generate new Item query
@@ -191,7 +180,7 @@ module.exports = postgres => {
               // -------------------------------
 
               // Commit the entire transaction!
-              client.query('COMMIT', err => {
+              client.query("COMMIT", err => {
                 if (err) {
                   throw err;
                 }
@@ -204,7 +193,7 @@ module.exports = postgres => {
             });
           } catch (e) {
             // Something went wrong
-            client.query('ROLLBACK', err => {
+            client.query("ROLLBACK", err => {
               if (err) {
                 throw err;
               }
@@ -218,6 +207,6 @@ module.exports = postgres => {
           }
         });
       });
-    }
+    },
   };
 };
