@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 /**
  * Item and user-related queries and mutations.
@@ -74,13 +74,13 @@ export const LOGOUT_MUTATION = gql`
 export const SIGNUP_MUTATION = gql`
   mutation signup($user: SignupInput!) {
     # @TODO: Pass the user into the signup mutation as an argument
-    # and return the id of the new user when the mutation is complete.
+    # and return the token and user id.
   }
 `;
 
 export const LOGIN_MUTATION = gql`
   mutation login($user: LoginInput!) {
     # @TODO: Pass the user into the login mutation as an argument
-    # and return the id of the new user when the mutation is complete.
+    # and return the token and user id.
   }
 `;
