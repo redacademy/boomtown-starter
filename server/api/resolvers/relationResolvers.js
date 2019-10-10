@@ -62,5 +62,7 @@ const relationResolvers = {
     //   // -------------------------------
     // }
     // -------------------------------
-  },
+  }
 };
+
+module.exports = relationResolvers;
