@@ -82,7 +82,7 @@ const mutationResolvers = app => ({
       });
 
       return {
-        toekn,
+        token,
         user,
       };
     } catch (e) {

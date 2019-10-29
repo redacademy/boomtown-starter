@@ -13,7 +13,7 @@ yarn install
 ### Run
 
 ```bash
-yarn start
+yarn run start:dev
 ```
 
 ## Client

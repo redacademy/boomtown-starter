@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from "react";
+import ReactDOM from "react-dom";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 // @TODO: Uncomment each module as needed in your client app
 // import { ApolloProvider } from 'react-apollo'
 // import { BrowserRouter } from 'react-router-dom'
-// import { Provider as ReduxProvider } from 'react-redux'
 // -------------------------------
 
-import registerServiceWorker from './registerServiceWorker';
-import theme from './theme';
+import registerServiceWorker from "./registerServiceWorker";
+import theme from "./theme";
 
 /**
  * @TODO: Initialize Apollo Client
@@ -35,21 +34,17 @@ import theme from './theme';
  */
 
 /**
- * @TODO: Initialize Redux Store
+ * @TODO: Wrap your app with the Item Preview Provider
  *
- * Uncomment the following line when your Redux store is configured
+ * import ItemPreviewProvider from './context/ItemPreviewProvider'
  *
- * import store from './redux'
- *
- * Below in your <App />, wrap a <ReduxProvider /> component around all
- * of the app's children, and pass it the imported `store` as the `store`
- * prop's value.
+ * Wrap this component around your app to access Item Preview Context API.
  */
 
 /**
- * @TODO: Add the Viewer Context
+ * @TODO: Wrap your app with the Viewer Context
  *
- * import { ViewerProvider } from './context/ViewerProvider'
+ * import ViewerProvider from './context/ViewerProvider'
  *
  * Below in your <App />, wrap the <ViewerProvider /> component around
  * the <BrowserRouter /> component so the router is aware of whether a
@@ -57,10 +52,10 @@ import theme from './theme';
  */
 
 // @TODO: Remove this import once you have your router working below
-import Home from './pages/Home';
+import Home from "./pages/Home";
 // -------------------------------
 
-import './index.css';
+import "./index.css";
 
 const App = () => {
   return (
@@ -71,5 +66,5 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
