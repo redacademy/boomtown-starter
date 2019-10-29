@@ -21,12 +21,6 @@ const ItemFields = gql`
     # https://www.apollographql.com/docs/angular/features/fragments.html
   }
 `;
-export const ITEM_QUERY = gql`
-  query item($id: ID!) {
-    # @TODO: Query an item by its id and return the ItemFields fragment.
-  }
-  ${ItemFields}
-`;
 
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
