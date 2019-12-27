@@ -41,7 +41,6 @@ function generateToken(user, secret) {
 
 // @TODO: Uncomment these lines later when we add auth
 // const jwt = require("jsonwebtoken")
-// const authMutations = require("./auth")
 // -------------------------------
 
 const mutationResolvers = app => ({
