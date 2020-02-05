@@ -1,4 +1,4 @@
-const { ApolloError } = require("apollo-server");
+const { ApolloError } = require('apollo-server');
 
 const queryResolvers = app => ({
   viewer(parent, args, { user }, info) {
@@ -34,5 +34,10 @@ const queryResolvers = app => ({
     // @TODO: Replace this mock return statement with the correct tags from Postgres
     return [];
     // -------------------------------
-  },
+  }
 });
+
+/*
+ * TODO: export your const queryResolvers appropriately
+ * to resolve error(s) in resolvers/index.js file.
+ */
