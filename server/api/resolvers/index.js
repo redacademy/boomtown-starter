@@ -14,9 +14,9 @@
  *  Finish of the rest of the resolvers when you're ready.
  */
 
-const queryResolvers = require('./queries');
-const mutationResolvers = require('./mutations');
-const relationResolvers = require('./relationResolvers');
+const queryResolvers = require("./queries");
+const mutationResolvers = require("./mutations");
+const relationResolvers = require("./relationResolvers");
 
 module.exports = app => {
   return {

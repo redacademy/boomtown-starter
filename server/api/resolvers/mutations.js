@@ -1,6 +1,6 @@
-const { ApolloError } = require('apollo-server-express');
-const { AuthenticationError } = require('apollo-server-express');
-const bcrypt = require('bcryptjs');
+const { ApolloError } = require("apollo-server-express");
+const { AuthenticationError } = require("apollo-server-express");
+const bcrypt = require("bcryptjs");
 
 function setCookie({ tokenName, token, res }) {
   /**
@@ -35,7 +35,7 @@ function generateToken(user, secret) {
    *  which can be decoded using the app secret to retrieve the stateless session.
    */
   // Refactor this return statement to return the cryptographic hash (the Token)
-  return '';
+  return "";
   // -------------------------------
 }
 
@@ -62,7 +62,7 @@ const mutationResolvers = app => ({
        * and store that instead. The password can be decoded using the original password.
        */
       // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-      const hashedPassword = '';
+      const hashedPassword = "";
       // -------------------------------
 
       const user = await context.pgResource.createUser({
@@ -71,10 +71,10 @@ const mutationResolvers = app => ({
         password: hashedPassword
       });
 
-      const token = generateToken(user, app.get('JWT_SECRET'));
+      const token = generateToken(user, app.get("JWT_SECRET"));
 
       setCookie({
-        tokenName: app.get('JWT_COOKIE_NAME'),
+        tokenName: app.get("JWT_COOKIE_NAME"),
         token,
         res: req.res
       });
@@ -93,7 +93,7 @@ const mutationResolvers = app => ({
       const user = await context.pgResource.getUserAndPasswordForVerification(
         args.user.email
       );
-      if (!user) throw 'User was not found.';
+      if (!user) throw "User was not found.";
       /**
        *  @TODO: Authentication - Server
        *
@@ -103,12 +103,12 @@ const mutationResolvers = app => ({
       // Use bcrypt to compare the provided password to 'hashed' password stored in your database.
       const valid = false;
       // -------------------------------
-      if (!valid) throw 'Invalid Password';
+      if (!valid) throw "Invalid Password";
 
-      const token = generateToken(user, app.get('JWT_SECRET'));
+      const token = generateToken(user, app.get("JWT_SECRET"));
 
       setCookie({
-        tokenName: app.get('JWT_COOKIE_NAME'),
+        tokenName: app.get("JWT_COOKIE_NAME"),
         token,
         res: req.res
       });
@@ -123,7 +123,7 @@ const mutationResolvers = app => ({
   },
 
   logout(parent, args, context) {
-    context.req.res.clearCookie(app.get('JWT_COOKIE_NAME'));
+    context.req.res.clearCookie(app.get("JWT_COOKIE_NAME"));
     return true;
   },
   async addItem(parent, args, context, info) {
@@ -139,7 +139,7 @@ const mutationResolvers = app => ({
      *  Again, you may look at the user resolver for an example of what
      *  destructuring should look like.
      */
-    const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
+    const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
     const newItem = await context.pgResource.saveNewItem({
       item: args.item,
       user
