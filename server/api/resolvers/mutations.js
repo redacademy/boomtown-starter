@@ -46,10 +46,8 @@ function generateToken(user, secret) {
 const mutationResolvers = app => ({
   async signup(
     parent,
-    {
-      user: { fullname, email, password },
-    },
-    { pgResource, req },
+    { user: { fullname, email, password } },
+    { pgResource, req }
   ) {
     try {
       /**
@@ -69,7 +67,7 @@ const mutationResolvers = app => ({
       const user = await context.pgResource.createUser({
         fullname: args.user.fullname,
         email: args.user.email,
-        password: hashedPassword,
+        password: hashedPassword
       });
 
       const token = generateToken(user, app.get("JWT_SECRET"));
@@ -77,28 +75,22 @@ const mutationResolvers = app => ({
       setCookie({
         tokenName: app.get("JWT_COOKIE_NAME"),
         token,
-        res: req.res,
+        res: req.res
       });
 
       return {
         token,
-        user,
+        user
       };
     } catch (e) {
       throw new AuthenticationError(e);
     }
   },
 
-  async login(
-    parent,
-    {
-      user: { email, password },
-    },
-    { pgResource, req },
-  ) {
+  async login(parent, { user: { email, password } }, { pgResource, req }) {
     try {
       const user = await context.pgResource.getUserAndPasswordForVerification(
-        args.user.email,
+        args.user.email
       );
       if (!user) throw "User was not found.";
       /**
@@ -117,12 +109,12 @@ const mutationResolvers = app => ({
       setCookie({
         tokenName: app.get("JWT_COOKIE_NAME"),
         token,
-        res: req.res,
+        res: req.res
       });
 
       return {
         token,
-        user,
+        user
       };
     } catch (e) {
       throw new AuthenticationError(e);
@@ -149,10 +141,14 @@ const mutationResolvers = app => ({
     const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
     const newItem = await context.pgResource.saveNewItem({
       item: args.item,
-      user,
+      user
     });
     return newItem;
-  },
+  }
 });
 
-module.exports = mutationResolvers;
+/*
+ * TODO: export your const mutationResolvers appropriately
+ * to resolve error(s) in resolvers/index.js file.
+ */
+
