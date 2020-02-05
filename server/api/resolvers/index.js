@@ -7,7 +7,7 @@
  *  Throwing ApolloErrors from your resolvers is a nice pattern to follow and
  *  will help you easily debug problems in your resolving functions.
  *
- *  It will also help you control th error output of your resource methods and use error
+ *  It will also help you control the error output of your resource methods and use error
  *  messages on the client! (More on that later).
  *
  *  The user resolver has been completed as an example of what you'll need to do.

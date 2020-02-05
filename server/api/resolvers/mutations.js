@@ -41,7 +41,6 @@ function generateToken(user, secret) {
 
 // @TODO: Uncomment these lines later when we add auth
 // const jwt = require("jsonwebtoken")
-// const authMutations = require("./auth")
 // -------------------------------
 
 const mutationResolvers = app => ({
@@ -152,3 +151,4 @@ const mutationResolvers = app => ({
  * TODO: export your const mutationResolvers appropriately
  * to resolve error(s) in resolvers/index.js file.
  */
+
